@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-2">
+        </div>
+        <div class="col-md-auto">
+            <div class="form-group">
+                <!-- <label for="side" style="text-align: center">Choose Side</label> -->
+                <select #mySelect (change)='onChanged($event)' name="side" id="side" class="form-control">
+          <option *ngFor="let option of availableAccounts" [value]="option.value">
+            {{ option.display }}
+          </option>
+        </select>
+            </div>
+        </div>
+        <div class="col col-lg-2">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="money-home" class="card border-success mx-sm-2 p-3" routerLink="/money" routerLinkActive="active">
+                <div class="border-success my-card">
+                    <span class="fa-stack fa-2x" style="color: green;">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-money fa-stack-1x fa-inverse"></i>
+          </span>
+                </div>
+                <div class="text-info text-center mt-3">
+                    <h4 style="color: green;">Money</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div id="reward-home" class="card border-danger mx-sm-2 p-3" routerLink="/reward" routerLinkActive="active">
+                <div class="border-success my-card">
+                    <span class="fa-stack fa-2x" style="color:red;">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-dollar fa-stack-1x fa-inverse"></i>
+          </span>
+                </div>
+                <div class="text-info text-center mt-3">
+                    <h4 style="color: red;">Reward</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

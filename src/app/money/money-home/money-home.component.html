@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <app-cheque *ngFor="let account of chequeAccounts" [account]="account"></app-cheque>
+        </div>
+        <div class="col">
+            <app-investment *ngFor="let account of investmentAccounts" [account]="account"></app-investment>
+        </div>
+    </div>
+</div>
