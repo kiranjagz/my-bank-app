@@ -9,6 +9,7 @@ import {
 import { SharedDataService } from 'src/app/shared.data.service';
 import { AccountModel } from './account.model';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-money-home',
@@ -21,10 +22,17 @@ export class MoneyHomeComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService, private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(
+      (params) => {
+      console.log(params.id);
+      console.log('params values is' + params.id);
+    })
+
+
     console.log('Loading accounts');
     this.subscription = this.sharedDataService.getUpdateListener()
     .subscribe((accounts : AccountModel[]) => {

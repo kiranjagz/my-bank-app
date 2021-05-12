@@ -13,11 +13,12 @@ export class HeaderComponent implements OnInit {
   ];
   accountNumber: string;
 
-  constructor(private sharedDataService: SharedDataService) {}
+  constructor(private sharedDataService: SharedDataService) {
+    this.accountNumber = this.availableAccounts[0].value;
+  }
 
   ngOnInit(): void {
-    var firstPosition = this.availableAccounts[0].value;
-    this.sharedDataService.getAccountById(firstPosition);
+    this.sharedDataService.getAccountById(this.accountNumber);
   }
 
   onChanged(event) {

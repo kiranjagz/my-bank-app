@@ -5,13 +5,15 @@ import { MoneyHomeComponent } from './money/money-home/money-home.component';
 import { RewardHomeComponent } from './reward/reward-home/reward-home.component';
 
 const routes: Routes = [
-  {path: '', component: MoneyHomeComponent},
-  {path: 'money', component: MoneyHomeComponent},
-  {path: 'reward', component:RewardHomeComponent}
+  {
+    path: 'money',
+    component: MoneyHomeComponent,
+  },
+  { path: 'reward', component: RewardHomeComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
