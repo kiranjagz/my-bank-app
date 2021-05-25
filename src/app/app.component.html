@@ -3,5 +3,10 @@
 </div>
 
 <main>
-    <router-outlet></router-outlet>
+    <div>
+        <app-money-home *ngIf="context == 'money'"></app-money-home>
+    </div>
+    <div>
+        <app-reward-home *ngIf="context == 'reward'"></app-reward-home>
+    </div>
 </main>

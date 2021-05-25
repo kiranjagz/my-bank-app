@@ -17,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./money-home.component.scss'],
 })
 export class MoneyHomeComponent implements OnInit, OnDestroy {
+  allAccounts: AccountModel[] = [];
   chequeAccounts: AccountModel[] = [];
   investmentAccounts: AccountModel[] = [];
   subscription: Subscription;
@@ -26,21 +27,14 @@ export class MoneyHomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(
-      (params) => {
-      console.log(params.id);
-      console.log('params values is' + params.id);
-    })
-
 
     console.log('Loading accounts');
-    this.subscription = this.sharedDataService.getUpdateListener()
-    .subscribe((accounts : AccountModel[]) => {
-      this.chequeAccounts = accounts.filter(x => x.accountType.toLowerCase() == "cheque");
-      this.investmentAccounts = accounts.filter(x => x.accountType.toLowerCase() == "investment");
-      console.log(this.chequeAccounts);
-      console.log(this.investmentAccounts);
-    })
+
+    this.subscription = this.sharedDataService.accountUpdated.subscribe(() => {
+      this.allAccounts = this.sharedDataService.getUpdateListener();
+      this.chequeAccounts = this.allAccounts.filter(x => x.accountType.toLowerCase() === "cheque");
+      this.investmentAccounts = this.allAccounts.filter(x => x.accountType.toLowerCase() === "investment");
+    });
   }
 
   ngOnDestroy(): void {

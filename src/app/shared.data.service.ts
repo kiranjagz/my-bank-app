@@ -6,20 +6,15 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SharedDataService {
-  public message = new Subject<string>();
   private accounts: AccountModel[] = [];
-  private accountUpdated = new Subject<AccountModel[]>();
+  public accountUpdated = new Subject<void>();
 
   constructor(private httpClient: HttpClient) {}
 
-  changeMessage(message: string) {
-    this.message.next(message);
-  }
-
-  getAccount() {
+  public getAccountById(id: string) : void {
     this.httpClient
       .get<{ message: string; accounts: any }>(
-        'https://localhost:5001/api/Account/getaccountsbyid'
+        'https://localhost:5003/api/Account/getaccountsbyid/' + id
       )
       .pipe(
         map((res) => {
@@ -37,37 +32,18 @@ export class SharedDataService {
       .subscribe((transformedAccounts) => {
         console.log('transform of response to viewmodel');
         this.accounts = transformedAccounts;
-        this.accountUpdated.next([...this.accounts]);
+        this.accountUpdated.next();
+        //this.accountUpdated.next([...this.accounts]);
       });
   }
 
-  getAccountById(id: string) {
-    this.httpClient
-      .get<{ message: string; accounts: any }>(
-        'https://localhost:5001/api/Account/getaccountsbyid/' + id
-      )
-      .pipe(
-        map((res) => {
-          return res.accounts.map((account) => {
-            return {
-              idNumber: account.idNumber,
-              availableBalance: account.availableBalance,
-              totalBalance: account.totalBalance,
-              accountType: account.accountType,
-              interestEarned: account.interestEarned,
-            };
-          });
-        })
-      )
-      .subscribe((transformedAccounts) => {
-        console.log('transform of response to viewmodel');
-        this.accounts = transformedAccounts;
-        this.accountUpdated.next([...this.accounts]);
-      });
-  }
-
-  getUpdateListener() {
+  public getUpdateListener() : AccountModel[] {
     console.log("Update listener called");
-    return this.accountUpdated.asObservable();
+    console.log(this.accounts);
+    return this.accounts;
+  }
+
+  public emitEvent(){
+    this.accountUpdated.next()
   }
 }

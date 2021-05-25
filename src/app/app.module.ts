@@ -10,6 +10,8 @@ import { MoneyHomeComponent } from './money/money-home/money-home.component';
 import { SharedDataService} from './shared.data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RewardHomeComponent } from './reward/reward-home/reward-home.component';
+import { MenuService } from './menu.service';
+import { RedbucksComponent } from './reward/reward-home/redbucks/redbucks.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,14 @@ import { RewardHomeComponent } from './reward/reward-home/reward-home.component'
     InvestmentComponent,
     MoneyHomeComponent,
     RewardHomeComponent,
+    RedbucksComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [SharedDataService],
+  providers: [SharedDataService, MenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

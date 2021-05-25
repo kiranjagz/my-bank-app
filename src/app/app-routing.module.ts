@@ -4,13 +4,7 @@ import { AppComponent } from './app.component';
 import { MoneyHomeComponent } from './money/money-home/money-home.component';
 import { RewardHomeComponent } from './reward/reward-home/reward-home.component';
 
-const routes: Routes = [
-  {
-    path: 'money',
-    component: MoneyHomeComponent,
-  },
-  { path: 'reward', component: RewardHomeComponent },
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

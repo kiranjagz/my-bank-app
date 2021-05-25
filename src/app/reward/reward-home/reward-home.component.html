@@ -1,1 +1,7 @@
-<p>reward-home works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <app-redbucks *ngFor="let account of redbucksAccounts" [account]="account"></app-redbucks>
+        </div>
+    </div>
+</div>
