@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AccountModel } from 'src/app/money/money-home/account.model';
+import { AccountData } from 'src/app/models/accounts.data';
+import { Account } from 'src/app/models/accounts.data';
 import { SharedDataService } from 'src/app/shared.data.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { SharedDataService } from 'src/app/shared.data.service';
   styleUrls: ['./reward-home.component.scss']
 })
 export class RewardHomeComponent implements OnInit, OnDestroy {
-  allAccounts: AccountModel[] = [];
-  redbucksAccounts: AccountModel[] = [];
+  allAccounts: AccountData;
+  redbucksAccounts: Account[] = [];
   subscription: Subscription;
 
   constructor(private sharedDataService: SharedDataService) { }
@@ -19,9 +20,9 @@ export class RewardHomeComponent implements OnInit, OnDestroy {
 
     console.log('Loading accounts');
 
-    this.subscription = this.sharedDataService.accountUpdated.subscribe(() => {
+    this.subscription = this.sharedDataService.$accountUpdated.subscribe(() => {
       this.allAccounts = this.sharedDataService.getUpdateListener();
-      this.redbucksAccounts = this.allAccounts.filter(x => x.accountType.toLowerCase() === "redbucks");
+      this.redbucksAccounts = this.allAccounts.accounts.filter(x => x.accountType.toLowerCase() === "redbucks");
     });
   }
 

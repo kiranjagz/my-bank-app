@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Account } from '../../../models/accounts.data';
 
 @Component({
   selector: 'app-investment',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./investment.component.scss']
 })
 export class InvestmentComponent implements OnInit {
-  @Input() account;
+  @Input() account: Account;
   constructor() { }
 
   ngOnInit(): void {

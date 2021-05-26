@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AccountModel } from '../account.model';
+import { Account } from '../../../models/accounts.data';
 
 @Component({
   selector: 'app-cheque',
@@ -7,7 +7,7 @@ import { AccountModel } from '../account.model';
   styleUrls: ['./cheque.component.scss']
 })
 export class ChequeComponent implements OnInit {
-  @Input() account: AccountModel;
+  @Input() account: Account;
 
   constructor() { }
 

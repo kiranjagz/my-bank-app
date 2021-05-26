@@ -24,12 +24,13 @@ export class HeaderComponent implements OnInit {
   onChanged(event) : void {
     console.log("onchanged clicked");
     this.accountNumber = event.target.value;
-    this.sharedDataService.getAccountById(this.accountNumber);
+    //this.sharedDataService.getAccountById(this.accountNumber);
+    this.sharedDataService.getAll(this.accountNumber);
   }
 
   setContext(menuItem: string) : void{
     this.menuService.setMenu(menuItem);
-    this.sharedDataService.getAccountById(this.accountNumber);
+    this.sharedDataService.getAll(this.accountNumber);
     //this.sharedDataService.emitEvent();
   }
 }

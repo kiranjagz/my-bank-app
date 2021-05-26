@@ -1,5 +1,9 @@
 <div class="container">
     <div class="row">
+        <div class="col mb-3 d-flex justify-content-center">{{allAccounts?.notificationMessage}}</div>
+    </div>
+    <div class="row">
+
         <div class="col">
             <app-cheque *ngFor="let account of chequeAccounts" [account]="account"></app-cheque>
         </div>
