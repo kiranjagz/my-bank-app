@@ -31,10 +31,13 @@ export class MoneyHomeComponent implements OnInit, OnDestroy {
 
     console.log('Loading accounts');
 
-    this.subscription = this.sharedDataService.$accountUpdated.subscribe(() => {
-      this.allAccounts = this.sharedDataService.getUpdateListener();
-      this.chequeAccounts = this.allAccounts.accounts.filter(x => x.accountType.toLowerCase() === "cheque");
-      this.investmentAccounts = this.allAccounts.accounts.filter(x => x.accountType.toLowerCase() === "investment");
+    this.subscription = this.sharedDataService.$accountUpdated.subscribe(response => {
+      if(response === true){
+        console.log(response);
+        this.allAccounts = this.sharedDataService.accounts;
+        this.chequeAccounts = this.allAccounts.accounts.filter(x => x.accountType.toLowerCase() === "cheque");
+        this.investmentAccounts = this.allAccounts.accounts.filter(x => x.accountType.toLowerCase() === "investment");
+      }
     });
   }
 

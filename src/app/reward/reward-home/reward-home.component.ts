@@ -20,9 +20,11 @@ export class RewardHomeComponent implements OnInit, OnDestroy {
 
     console.log('Loading accounts');
 
-    this.subscription = this.sharedDataService.$accountUpdated.subscribe(() => {
-      this.allAccounts = this.sharedDataService.getUpdateListener();
-      this.redbucksAccounts = this.allAccounts.accounts.filter(x => x.accountType.toLowerCase() === "redbucks");
+    this.subscription = this.sharedDataService.$accountUpdated.subscribe(response => {
+      if(response === true){
+        this.allAccounts = this.sharedDataService.accounts;
+        this.redbucksAccounts = this.allAccounts.accounts.filter(x => x.accountType.toLowerCase() === "redbucks");
+      }
     });
   }
 
