@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuService } from '../menu.service';
+import { MenuService } from './../services/menu/menu.service';
 import { SharedDataService } from '../shared.data.service';
 
 @Component({
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
   setContext(menuItem: string): void {
     this.menuService.setMenu(menuItem);
-    //this.sharedDataService.getAll(this.accountNumber);
-    this.sharedDataService.emitEvent();
+    //TODO remove this and use in memory
+    this.sharedDataService.getAll(this.accountNumber);
   }
 }

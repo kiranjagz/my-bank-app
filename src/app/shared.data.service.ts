@@ -34,8 +34,4 @@ export class SharedDataService {
       this.$accountUpdated.next(true);
     });
   }
-
-  public emitEvent() : void {
-    this.$accountUpdated.next(true);
-  }
 }
